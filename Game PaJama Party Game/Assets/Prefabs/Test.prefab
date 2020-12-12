@@ -183,7 +183,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7610958486456444346}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 87a92c697884b72419e3a36eaf7f5bd1, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -209,13 +209,13 @@ CircleCollider2D:
   m_GameObject: {fileID: 7610958486456444346}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 87a92c697884b72419e3a36eaf7f5bd1, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25}
+  m_Offset: {x: -0.000000091699455, y: -0.2560686}
   serializedVersion: 2
-  m_Radius: 0.25652748
+  m_Radius: 0.24759614
 --- !u!50 &3786922790930149636
 Rigidbody2D:
   serializedVersion: 4
@@ -250,5 +250,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 8710901783028417076}
-  physicsMaterial: {fileID: 6200000, guid: 87a92c697884b72419e3a36eaf7f5bd1, type: 2}
+  slippery: {fileID: 6200000, guid: 87a92c697884b72419e3a36eaf7f5bd1, type: 2}
+  sticky: {fileID: 6200000, guid: c164269ce92bc404d85c1b030a945c9e, type: 2}
   moveSpeed: 20
