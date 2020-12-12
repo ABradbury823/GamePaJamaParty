@@ -44,7 +44,8 @@ GameObject:
   - component: {fileID: 2563385587911505727}
   - component: {fileID: 2593525548910306849}
   - component: {fileID: 2591724685716022721}
-  - component: {fileID: 2499697528990562059}
+  - component: {fileID: -772917485821719225}
+  - component: {fileID: 7518942233730780919}
   m_Layer: 8
   m_Name: Bolchie - Basic 1
   m_TagString: Player
@@ -64,6 +65,7 @@ Transform:
   m_LocalScale: {x: 0.33528966, y: 0.28917393, z: 0.33528966}
   m_Children:
   - {fileID: 2533618699275298501}
+  - {fileID: 4862574483023126699}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -125,7 +127,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2531240894757305275}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 8c31b6628645c3b4495e6695f734eaa8, type: 2}
   m_CullingMode: 0
@@ -156,7 +158,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &2593525548910306849
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -199,7 +201,7 @@ CircleCollider2D:
   m_Offset: {x: -0.15, y: -2.8}
   serializedVersion: 2
   m_Radius: 0.46
---- !u!114 &2499697528990562059
+--- !u!114 &-772917485821719225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,10 +210,68 @@ MonoBehaviour:
   m_GameObject: {fileID: 2531240894757305275}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20b16551228cbc94a91368cac6dd55b3, type: 3}
+  m_Script: {fileID: 11500000, guid: bab88b2add01ee5449a12aa6b773f9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundCheck: {fileID: 2533618699275298501}
-  whatIsGround:
+  m_JumpForce: 400
+  m_CrouchSpeed: 0.4
+  m_MovementSmoothing: 0.05
+  m_AirControl: 1
+  m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 55
+  m_GroundCheck: {fileID: 2533618699275298501}
+  m_CeilingCheck: {fileID: 4862574483023126699}
+  m_CrouchDisableCollider: {fileID: 2593525548910306849}
+  OnLandEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnCrouchEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7518942233730780919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2531240894757305275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d1d4e213679b84484d843430e7fad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: -772917485821719225}
+  slippery: {fileID: 6200000, guid: 87a92c697884b72419e3a36eaf7f5bd1, type: 2}
+  sticky: {fileID: 6200000, guid: c164269ce92bc404d85c1b030a945c9e, type: 2}
+  moveSpeed: 20
+--- !u!1 &3903068937514558664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4862574483023126699}
+  m_Layer: 0
+  m_Name: CeilingCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4862574483023126699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903068937514558664}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.19, z: 0}
+  m_LocalScale: {x: 2.9824958, y: 3.4581263, z: 2.9824958}
+  m_Children: []
+  m_Father: {fileID: 2537679556224078615}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
