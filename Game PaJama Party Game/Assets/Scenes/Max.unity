@@ -142,9 +142,8 @@ MonoBehaviour:
   boxSpawned: 0
   playerBox: {fileID: 5719462595925297428, guid: e0dcc7cad92b74c4aa024390b9b25739,
     type: 3}
-  playerFacing: 1
-  rightShift: {x: 3, y: 0, z: 0}
-  leftShift: {x: -3, y: 0, z: 0}
+  currentBox: {fileID: 5719462595925297428, guid: e0dcc7cad92b74c4aa024390b9b25739,
+    type: 3}
 --- !u!1001 &294203233
 PrefabInstance:
   m_ObjectHideFlags: 0
