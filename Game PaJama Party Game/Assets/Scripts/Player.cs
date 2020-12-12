@@ -5,7 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public CharacterController2D characterController;
-    public PhysicsMaterial2D physicsMaterial;
+    public PhysicsMaterial2D slippery;
+    public PhysicsMaterial2D sticky;
+    private Rigidbody2D rb;
 
     public float moveSpeed = 40f;
     private float horizontal;
@@ -16,7 +18,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -25,15 +27,15 @@ public class Player : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal") * moveSpeed;
 
         //make sure you don't slide on slopes
-        if (horizontal != 0)
+        if (horizontal == 0.0f)
         {
-            physicsMaterial.friction = 0f;
+            rb.sharedMaterial = sticky;
         }
 
         //don't stick to platforms
         else
         {
-            physicsMaterial.friction = 1f;
+            rb.sharedMaterial = slippery;
         }
 
         if(Input.GetButtonDown("Jump"))
