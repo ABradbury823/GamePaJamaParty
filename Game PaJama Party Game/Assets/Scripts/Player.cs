@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public CharacterController2D characterController;
+    public PhysicsMaterial2D physicsMaterial;
 
     public float moveSpeed = 40f;
     private float horizontal;
@@ -22,6 +23,18 @@ public class Player : MonoBehaviour
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal") * moveSpeed;
+
+        //make sure you don't slide on slopes
+        if (horizontal != 0)
+        {
+            physicsMaterial.friction = 0f;
+        }
+
+        //don't stick to platforms
+        else
+        {
+            physicsMaterial.friction = 1f;
+        }
 
         if(Input.GetButtonDown("Jump"))
         {

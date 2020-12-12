@@ -250,4 +250,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterController: {fileID: 8710901783028417076}
-  moveSpeed: 20.67
+  physicsMaterial: {fileID: 6200000, guid: 87a92c697884b72419e3a36eaf7f5bd1, type: 2}
+  moveSpeed: 20
