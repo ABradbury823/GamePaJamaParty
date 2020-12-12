@@ -30,6 +30,8 @@ public class CharacterController2D : MonoBehaviour
 	public BoolEvent OnCrouchEvent;
 	private bool m_wasCrouching = false;
 
+	private Animator animator;
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -39,6 +41,8 @@ public class CharacterController2D : MonoBehaviour
 
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
+
+		animator = GetComponent<Animator>();
 	}
 
 	private void FixedUpdate()
@@ -122,6 +126,16 @@ public class CharacterController2D : MonoBehaviour
 				// ... flip the player.
 				Flip();
 			}
+
+			animator.SetBool("Ground", m_Grounded);
+			animator.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
+			animator.SetFloat("Speed", Mathf.Abs(move));
+
+			if(Mathf.Abs(move) == 0 && m_Grounded)
+            {
+				animator.SetFloat("vSpeed", 0f);
+				animator.SetFloat("Speed", Mathf.Abs(move));
+            }
 		}
 		// If the player should jump...
 		if (m_Grounded && jump)
