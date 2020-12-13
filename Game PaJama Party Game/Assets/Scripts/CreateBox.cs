@@ -14,6 +14,8 @@ public class CreateBox : MonoBehaviour {
     private Vector3 rightShift = new Vector3(1.5f, 0.25f);
     private Vector3 leftShift = new Vector3(-1.5f, 0.25f);
 
+    public ParticleSystem deathParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +61,8 @@ public class CreateBox : MonoBehaviour {
             //currentBox.transform.rotation = Quaternion.identity;
             //currentBox.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             //currentBox.transform.position = playerPos;
+
+            Instantiate(deathParticles, currentBox.transform.position, Quaternion.identity);
 
             Destroy(currentBox);
             currentBox = Instantiate(playerBox, playerPos, Quaternion.identity);
