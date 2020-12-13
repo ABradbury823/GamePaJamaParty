@@ -205,7 +205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175313929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.1100001, y: 1.9399998, z: -5}
+  m_LocalPosition: {x: -6.55, y: 5.27, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -8223,6 +8223,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3910032005827161358, guid: e2c8f90fde94fb6408f449eb8b043980,
+        type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1830662282}
+    - target: {fileID: 3910032005827161358, guid: e2c8f90fde94fb6408f449eb8b043980,
+        type: 3}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 189395442}
+    - target: {fileID: 3910032005827161358, guid: e2c8f90fde94fb6408f449eb8b043980,
+        type: 3}
+      propertyPath: box
+      value: 
+      objectReference: {fileID: 5719462595925297428, guid: e0dcc7cad92b74c4aa024390b9b25739,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2c8f90fde94fb6408f449eb8b043980, type: 3}
 --- !u!1001 &1677362866
@@ -8250,12 +8266,12 @@ PrefabInstance:
     - target: {fileID: 2537679556224078615, guid: 92b125c6476ae5747a51350ec5fccd57,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.11
+      value: -6.55
       objectReference: {fileID: 0}
     - target: {fileID: 2537679556224078615, guid: 92b125c6476ae5747a51350ec5fccd57,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.19
+      value: 5.52
       objectReference: {fileID: 0}
     - target: {fileID: 2537679556224078615, guid: 92b125c6476ae5747a51350ec5fccd57,
         type: 3}
@@ -8399,6 +8415,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
+    - target: {fileID: 3910032005827161358, guid: e2c8f90fde94fb6408f449eb8b043980,
+        type: 3}
+      propertyPath: box
+      value: 
+      objectReference: {fileID: 5719462595925297428, guid: e0dcc7cad92b74c4aa024390b9b25739,
+        type: 3}
+    - target: {fileID: 3910032005827161358, guid: e2c8f90fde94fb6408f449eb8b043980,
+        type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1229999957}
+    - target: {fileID: 3910032005827161358, guid: e2c8f90fde94fb6408f449eb8b043980,
+        type: 3}
+      propertyPath: button
+      value: 
+      objectReference: {fileID: 1735350356}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2c8f90fde94fb6408f449eb8b043980, type: 3}
 --- !u!1001 &1852737697416820538
@@ -8421,12 +8453,12 @@ PrefabInstance:
     - target: {fileID: 1852737697331864558, guid: 3c2c7da1992bbee409fdb0f9d3a87fc7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.1100001
+      value: -6.55
       objectReference: {fileID: 0}
     - target: {fileID: 1852737697331864558, guid: 3c2c7da1992bbee409fdb0f9d3a87fc7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.9399998
+      value: 5.27
       objectReference: {fileID: 0}
     - target: {fileID: 1852737697331864558, guid: 3c2c7da1992bbee409fdb0f9d3a87fc7,
         type: 3}

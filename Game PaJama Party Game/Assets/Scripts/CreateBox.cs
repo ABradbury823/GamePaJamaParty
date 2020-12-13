@@ -19,11 +19,16 @@ public class CreateBox : MonoBehaviour {
     private Vector3 leftShift = new Vector3(-1.5f, 0.25f);
 
     public ParticleSystem deathParticles;
+    public ParticleSystem badSpawnParticles;
+
+    private AudioSource audioSource;
+    public AudioClip badSpawnSound;
+    public AudioClip moveBoxSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -69,6 +74,8 @@ public class CreateBox : MonoBehaviour {
         {
             if (!boxSpawned) // Initially spawn the box
             {
+                audioSource.volume = .50f;
+                audioSource.PlayOneShot(moveBoxSound);
                 currentBox = Instantiate(playerBox, playerPos, Quaternion.identity);
                 boxSpawned = true;
             }
@@ -78,7 +85,8 @@ public class CreateBox : MonoBehaviour {
                 //currentBox.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 //currentBox.transform.position = playerPos;
 
-                Instantiate(deathParticles, currentBox.transform.position, Quaternion.identity);
+                audioSource.PlayOneShot(moveBoxSound);
+                Instantiate(deathParticles, currentBox.transform.position + Vector3.back, Quaternion.identity);
 
                 Destroy(currentBox);
                 currentBox = Instantiate(playerBox, playerPos, Quaternion.identity);
@@ -87,7 +95,9 @@ public class CreateBox : MonoBehaviour {
         else
         {
             // Put the particle effect for not having room to spawn a box here
-
+            audioSource.volume = .50f;
+            audioSource.PlayOneShot(badSpawnSound);
+            Instantiate(badSpawnParticles, playerPos + Vector3.back, Quaternion.identity);
         }    
     }
 

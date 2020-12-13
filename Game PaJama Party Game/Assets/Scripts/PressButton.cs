@@ -17,11 +17,18 @@ public class PressButton : MonoBehaviour
     private Vector3 downShift = new Vector3(0f, -0.05f);
     private Vector3 hShift = new Vector3(0.45f, 0f);
 
+    private AudioSource buttonAudio;
+    private AudioSource doorAudio;
+    public AudioClip buttonPressedSound;
+    public AudioClip doorClosedSound;
 
     // Start is called before the first frame update
     void Start()
     {
         originalPos = this.transform.position;
+
+        buttonAudio = GetComponent<AudioSource>();
+        doorAudio = door.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -73,6 +80,7 @@ public class PressButton : MonoBehaviour
     {
         if (!pressed)
         {
+            buttonAudio.PlayOneShot(buttonPressedSound);
             pressed = true;
             this.transform.position = originalPos + downShift;
             door.SetActive(false);
@@ -86,6 +94,7 @@ public class PressButton : MonoBehaviour
             pressed = false;
             this.transform.position = originalPos;
             door.SetActive(true);
+            doorAudio.PlayOneShot(doorClosedSound);
         }
     }
 }
