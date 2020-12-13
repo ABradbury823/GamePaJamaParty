@@ -127,13 +127,13 @@ public class CharacterController2D : MonoBehaviour
 				Flip();
 			}
 
-			//walking and standing
+			//walking, jumping and falling
 			animator.SetBool("Ground", m_Grounded);
 			animator.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
 			animator.SetFloat("Speed", Mathf.Abs(move));
 
-			//falling and jumping
-			if(Mathf.Abs(move) == 0 && m_Grounded)
+			//idle
+			if((Mathf.Abs(move) == 0 && m_Grounded) || (Mathf.Approximately(m_Rigidbody2D.velocity.magnitude, 0f) && m_Grounded))
             {
 				animator.SetFloat("vSpeed", 0f);
 				animator.SetFloat("Speed", 0f);
