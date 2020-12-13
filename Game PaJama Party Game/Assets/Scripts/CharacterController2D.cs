@@ -64,8 +64,13 @@ public class CharacterController2D : MonoBehaviour
 			if (colliders[i].gameObject != gameObject)
 			{
 				m_Grounded = true;
+
 				if (!wasGrounded)
+				{
+					m_Rigidbody2D.velocity = Vector2.zero;
+					m_Rigidbody2D.angularVelocity = 0f;
 					OnLandEvent.Invoke();
+				}
 			}
 		}
 	}
@@ -193,6 +198,7 @@ public class CharacterController2D : MonoBehaviour
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
+			m_Rigidbody2D.velocity.Set(m_Rigidbody2D.velocity.x, 0.0f);
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}
