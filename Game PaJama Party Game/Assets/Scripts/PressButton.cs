@@ -15,7 +15,8 @@ public class PressButton : MonoBehaviour
 
     // Vectors to move the button and cast rays
     private Vector3 downShift = new Vector3(0f, -0.05f);
-    
+    private Vector3 hShift = new Vector3(0.45f, 0f);
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +27,16 @@ public class PressButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(transform.position, Vector2.up * rayHeight);
+        Debug.DrawRay(originalPos, Vector2.up * rayHeight);
+        Debug.DrawRay(originalPos + hShift, Vector2.up * rayHeight);
+        Debug.DrawRay(originalPos - hShift, Vector2.up * rayHeight);
         RaycastHit2D hit = Physics2D.Raycast(originalPos, Vector2.up, rayHeight);
+        RaycastHit2D hit2 = Physics2D.Raycast(originalPos + hShift, Vector2.up, rayHeight);
+        RaycastHit2D hit3 = Physics2D.Raycast(originalPos - hShift, Vector2.up, rayHeight);
 
         // Consider adding more RaycastHit2D variables with an adjusted first variable
         // to cover more of the button's width.
-        if (hit.collider != null)
+        if (hit.collider != null || hit2.collider != null || hit3.collider != null)
         {
             if (!pressed) // Check if the button was already pressed
             {
