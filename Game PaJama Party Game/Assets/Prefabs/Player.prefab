@@ -46,8 +46,9 @@ GameObject:
   - component: {fileID: 2591724685716022721}
   - component: {fileID: -772917485821719225}
   - component: {fileID: 7518942233730780919}
+  - component: {fileID: 3820728955450138954}
   m_Layer: 8
-  m_Name: Bolchie - Basic 1
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,6 +246,24 @@ MonoBehaviour:
   slippery: {fileID: 6200000, guid: 87a92c697884b72419e3a36eaf7f5bd1, type: 2}
   sticky: {fileID: 6200000, guid: c164269ce92bc404d85c1b030a945c9e, type: 2}
   moveSpeed: 20
+--- !u!114 &3820728955450138954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2531240894757305275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79477fb7ab604354badf247c2e7e4b55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxSpawned: 0
+  playerBox: {fileID: 5719462595925297428, guid: e0dcc7cad92b74c4aa024390b9b25739,
+    type: 3}
+  currentBox: {fileID: 0}
+  deathParticles: {fileID: 5137789474006466047, guid: 76d4a9d6bfd17604eb26b27393176dbe,
+    type: 3}
 --- !u!1 &3903068937514558664
 GameObject:
   m_ObjectHideFlags: 0

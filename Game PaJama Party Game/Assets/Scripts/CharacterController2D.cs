@@ -32,6 +32,12 @@ public class CharacterController2D : MonoBehaviour
 
 	private Animator animator;
 
+	//slope fields
+	private bool isOnSlope = false;
+	private float slopeDownAngle;
+	private Vector2 slopeNormalPerp;
+	private float slopeDownAngleOld;
+
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -107,12 +113,55 @@ public class CharacterController2D : MonoBehaviour
 					m_wasCrouching = false;
 					OnCrouchEvent.Invoke(false);
 				}
+
+				//check if on a slope
+				if(m_Grounded)
+                {
+					RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, Mathf.Infinity, m_WhatIsGround);
+					if(hit)
+                    {
+						slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
+						slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
+
+						if(slopeDownAngle != slopeDownAngleOld)
+                        {
+							isOnSlope = true;
+                        }
+
+						slopeDownAngleOld = slopeDownAngle;
+
+						//Debug.DrawRay(hit.point, slopeNormalPerp, Color.blue);
+						//Debug.DrawRay(hit.point, hit.normal, Color.green);
+                    }
+                }
 			}
 
 			// Move the character by finding the target velocity
 			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+
+			//change velocity based on terrain
+			//flat ground
+			if(m_Grounded && !isOnSlope)
+            {
+				targetVelocity.Set(move * 10f, 0.0f, 0.0f);
+				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+			}
+
+			//slope
+			else if(m_Grounded && isOnSlope)
+            {
+				targetVelocity.Set(-move * 10f * slopeNormalPerp.x, -move * 10f * slopeNormalPerp.y, 0.0f);
+				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+			}
+
+			//air
+			else if(!m_Grounded)
+            {
+				targetVelocity.Set(move * 10f, m_Rigidbody2D.velocity.y , 0.0f);
+				m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
+			}
 
 			// If the input is moving the player right and the player is facing left...
 			if (move > 0 && !m_FacingRight)
@@ -127,14 +176,16 @@ public class CharacterController2D : MonoBehaviour
 				Flip();
 			}
 
+			//walking, jumping and falling
 			animator.SetBool("Ground", m_Grounded);
 			animator.SetFloat("vSpeed", m_Rigidbody2D.velocity.y);
 			animator.SetFloat("Speed", Mathf.Abs(move));
 
-			if(Mathf.Abs(move) == 0 && m_Grounded)
+			//idle
+			if((Mathf.Abs(move) == 0 && m_Grounded) || (Mathf.Approximately(m_Rigidbody2D.velocity.magnitude, 0f) && m_Grounded))
             {
 				animator.SetFloat("vSpeed", 0f);
-				animator.SetFloat("Speed", Mathf.Abs(move));
+				animator.SetFloat("Speed", 0f);
             }
 		}
 		// If the player should jump...
