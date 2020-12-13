@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3058443707942169416}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3058443708202457110}
   - component: {fileID: 3058443708202457109}
   - component: {fileID: 3058443708202457111}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Button_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 3058443709056031171}
   - component: {fileID: 3058443709056031170}
   - component: {fileID: 3058443709056031169}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Pressure_Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
