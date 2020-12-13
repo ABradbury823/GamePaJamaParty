@@ -7,9 +7,9 @@ public class PressButton : MonoBehaviour
 
     public GameObject box;
     public GameObject door;
-    public GameObject buttonParent;
+    public GameObject button;
     private bool pressed = false;
-    public static Vector3 originalPos;
+    private Vector3 originalPos;
     private float rayHeight = 0.35f;
 
 
@@ -20,13 +20,13 @@ public class PressButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        originalPos = transform.position;
+        originalPos = this.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.DrawRay(transform.position, Vector2.up * rayHeight);
+        Debug.DrawRay(transform.position, Vector2.up * rayHeight);
         RaycastHit2D hit = Physics2D.Raycast(originalPos, Vector2.up, rayHeight);
 
         // Consider adding more RaycastHit2D variables with an adjusted first variable
@@ -69,7 +69,7 @@ public class PressButton : MonoBehaviour
         if (!pressed)
         {
             pressed = true;
-            transform.position = originalPos + downShift;
+            this.transform.position = originalPos + downShift;
             door.SetActive(false);
         }
     }
@@ -79,7 +79,7 @@ public class PressButton : MonoBehaviour
         if (pressed)
         {
             pressed = false;
-            transform.position = originalPos;
+            this.transform.position = originalPos;
             door.SetActive(true);
         }
     }
