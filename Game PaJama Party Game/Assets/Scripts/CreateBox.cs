@@ -9,6 +9,10 @@ public class CreateBox : MonoBehaviour {
     public GameObject playerBox;
     public GameObject currentBox;
     private float playerFacing = 1f;
+    public float rayHeight = 1.5f;
+    private RaycastHit2D hit;
+
+    // Player's BoxCollider
 
     // Vectors adjusting the position the box is spawned
     private Vector3 rightShift = new Vector3(1.5f, 0.25f);
@@ -26,12 +30,29 @@ public class CreateBox : MonoBehaviour {
     void Update()
     {
         float tempFacing;
+         
 
         // Check the player's facing if it is a non zero value
         // Positive means right, negative means left
-        if((tempFacing = Input.GetAxisRaw("Horizontal")) != 0)
+        if ((tempFacing = Input.GetAxisRaw("Horizontal")) != 0)
         {
             playerFacing = tempFacing;
+            hit = Physics2D.Raycast(transform.position, Vector2.right, rayHeight);
+        }
+
+        if(playerFacing > 0)
+        {
+            playerPos = transform.position + rightShift;
+            // Cast a ray to the right to check if something is in the way
+            Debug.DrawRay(playerPos - (rightShift / 1.4f), Vector2.right * rayHeight);
+            hit = Physics2D.Raycast(playerPos - (rightShift/1.4f), Vector2.right, rayHeight);
+        }
+        else if (playerFacing < 0)
+        {
+            playerPos = transform.position + leftShift;
+            // Cast a ray to the left to check if there's something in the way
+            Debug.DrawRay(playerPos - (leftShift / 1.4f), Vector2.left * rayHeight);
+            hit = Physics2D.Raycast(playerPos - (leftShift/1.4f), Vector2.left, rayHeight);
         }
 
         if (Input.GetKeyDown(KeyCode.X))
@@ -42,30 +63,32 @@ public class CreateBox : MonoBehaviour {
 
     void SpawnBox()
     {
-        if (playerFacing > 0)
-        {
-            playerPos = transform.position + rightShift;
-        }
-        else if (playerFacing < 0)
-        {
-            playerPos = transform.position + leftShift;
-        }
 
-        if (!boxSpawned) // Initially spawn the box
+        // Check if something was in the way of the box
+        if (hit.collider == null)
         {
-            currentBox = Instantiate(playerBox, playerPos, Quaternion.identity);
-            boxSpawned = true;        
+            if (!boxSpawned) // Initially spawn the box
+            {
+                currentBox = Instantiate(playerBox, playerPos, Quaternion.identity);
+                boxSpawned = true;
+            }
+            else // Box has already spawned, need to move it to new position
+            {
+                //currentBox.transform.rotation = Quaternion.identity;
+                //currentBox.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                //currentBox.transform.position = playerPos;
+
+                Instantiate(deathParticles, currentBox.transform.position, Quaternion.identity);
+
+                Destroy(currentBox);
+                currentBox = Instantiate(playerBox, playerPos, Quaternion.identity);
+            }
         }
-        else // Box has already spawned, need to move it to new position
+        else
         {
-            //currentBox.transform.rotation = Quaternion.identity;
-            //currentBox.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            //currentBox.transform.position = playerPos;
+            // Put the particle effect for not having room to spawn a box here
 
-            Instantiate(deathParticles, currentBox.transform.position, Quaternion.identity);
-
-            Destroy(currentBox);
-            currentBox = Instantiate(playerBox, playerPos, Quaternion.identity);
-        }
+        }    
     }
+
 }

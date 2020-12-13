@@ -26,9 +26,8 @@ public class PressButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(transform.position, Vector2.up * rayHeight);
+        //Debug.DrawRay(transform.position, Vector2.up * rayHeight);
         RaycastHit2D hit = Physics2D.Raycast(originalPos, Vector2.up, rayHeight);
-
 
         // Consider adding more RaycastHit2D variables with an adjusted first variable
         // to cover more of the button's width.
